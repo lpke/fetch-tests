@@ -1,4 +1,8 @@
+import goFetch from 'lib/fetch.js';
+
 function Home() {
+
+  goFetch();
   
   return (
     <>
@@ -6,7 +10,7 @@ function Home() {
 
       <p>I will be fetching an image locally and adding below.</p>
 
-      <img id="penguin" src="" alt="fetched-penguin" />
+      <img id="penguin" src="" alt="Fetched image here..." />
 
       <pre>penguin.jpg</pre>
 
