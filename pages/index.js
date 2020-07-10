@@ -15,7 +15,7 @@ function Home() {
     format: 'json',
     action: 'parse',
     page: 'COVID-19_pandemic_in_Australia'
-  });
+  }).then(console.log);
 
   return (
     <>
