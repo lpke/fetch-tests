@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
-import fetchImg from 'lib/fetch.js';
+import fetchWikiData from 'lib/fetch.js';
 
 function Home() {
   
-  const [imgUrl, setUrl] = useState(null);
+  const [wikiData, setWikiData] = useState(null);
 
   useEffect(() => {
-    fetchImg().then(url => {
-      setUrl(url);
+    fetchWikiData().then(data => {
+      setWikiData(data);
     });
   }, []);
 
   return (
     <>
-      <h1>Example HTML file</h1>
+      <h1>Fetching Wikipedia Content</h1>
 
-      <p>I will be fetching an image locally and adding below.</p>
+      <p>I will be getting and parsing data from wikipedia using the public API.</p>
 
-      <img id="penguin" src={imgUrl} alt="Fetched image here..." />
-
-      <pre>penguin.jpg</pre>
+      <p>{wikiData || 'Data here...'}</p>
 
       <style jsx>{`
         img {
