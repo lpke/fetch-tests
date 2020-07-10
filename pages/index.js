@@ -14,7 +14,8 @@ function Home() {
   fetchWikiData({
     format: 'json',
     action: 'parse',
-    page: 'COVID-19_pandemic_in_Australia'
+    page: 'COVID-19_pandemic_in_Australia',
+    section: '15'
   }).then(console.log);
 
   return (
