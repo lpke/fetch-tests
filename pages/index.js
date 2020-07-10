@@ -1,16 +1,24 @@
-import goFetch from 'lib/fetch.js';
+import { useState, useEffect } from 'react';
+import fetchImg from 'lib/fetch.js';
+import testAsync from 'lib/async.js';
 
 function Home() {
-
-  goFetch();
   
+  const [imgUrl, setUrl] = useState(null);
+
+  useEffect(() => {
+    fetchImg().then(url => {
+      setUrl(url);
+    });
+  }, []);
+
   return (
     <>
       <h1>Example HTML file</h1>
 
       <p>I will be fetching an image locally and adding below.</p>
 
-      <img id="penguin" src="" alt="Fetched image here..." />
+      <img id="penguin" src={imgUrl} alt="Fetched image here..." />
 
       <pre>penguin.jpg</pre>
 
