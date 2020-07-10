@@ -2,10 +2,10 @@ import Head from 'next/head';
 import Wrapper from 'layouts/_wrapper';
 import 'styles/global.scss';
 
-function App() {
+function App(props) {
 
-  let Component = this.props.Component;
-  let pageProps = this.props.pageProps;
+  let Component = props.Component;
+  let pageProps = props.pageProps;
 
   return (
     <>
