@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import fetchImg from 'lib/fetch.js';
-import testAsync from 'lib/async.js';
 
 function Home() {
   
