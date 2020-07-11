@@ -45,9 +45,17 @@ function Home() {
       <pre>{data || loadMsg || 'Select a state.'}</pre>
 
       <style jsx>{`
+        hr {
+          margin: 26px 0;
+        }
+        
         select, button {
           display: inline-block;
           height: 35px;
+        }
+
+        button {
+          margin-left: 8px;
         }
         
         img {
