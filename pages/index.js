@@ -27,7 +27,7 @@ function Home() {
 
       <hr/>
 
-      <pre>{cases || 'Data here...'}</pre>
+      <pre>{cases || 'Loading data...'}</pre>
 
       <style jsx>{`
         img {
