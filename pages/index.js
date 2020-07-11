@@ -15,7 +15,7 @@ function Home() {
       section: '15'
     }).then(data => {
       let parseTree = data.parse.parsetree['*'];
-      setCases(extractCases(parseTree, 'NSW'));
+      setCases(extractCases(parseTree, 'nsw'));
     });
   }, []);
 
