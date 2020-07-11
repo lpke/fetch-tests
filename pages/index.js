@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
-import fetchWikiData from 'lib/fetch.js';
+import fetchWikiData from 'lib/wikiFetch';
+import extractCases from 'lib/extractCases';
 
 function Home() {
   
-  const [wikiData, setWikiData] = useState(null);
+  const [cases, setCases] = useState(null);
 
-  // useEffect(() => {
-  //   fetchWikiData().then(data => {
-  //     setWikiData(data);
-  //   });
-  // }, []);
-
-  fetchWikiData({
-    action: 'parse',
-    format: 'json',
-    page: 'COVID-19_pandemic_in_Australia',
-    prop: 'wikitext',
-    section: '15'
-  }).then(console.log);
+  useEffect(() => {
+    fetchWikiData({
+      action: 'parse',
+      format: 'json',
+      page: 'COVID-19_pandemic_in_Australia',
+      prop: 'parsetree',
+      section: '15'
+    }).then(data => {
+      let parseTree = data.parse.parsetree['*'];
+      setCases(extractCases(parseTree, 'NSW'));
+    });
+  }, []);
 
   return (
     <>
@@ -27,7 +27,7 @@ function Home() {
 
       <hr/>
 
-      <p>{wikiData || 'Data here...'}</p>
+      <pre>{cases || 'Data here...'}</pre>
 
       <style jsx>{`
         img {
@@ -38,11 +38,15 @@ function Home() {
         pre {
           display: inline-block;
           font-family: 'JetBrains Mono', monospace;
-          font-size: 18px;
+          font-size: 14px;
+          line-height: 21px;
           background: #f7f7f7;
           border: 1px solid #dfdfdf;
           border-radius: 5px;
           padding: 6px 10px;
+          overflow-x: auto;
+          white-space: pre-wrap;
+          word-wrap: break-word;
         }
       `}</style>
     </>
