@@ -4,9 +4,11 @@ import extractCases from 'lib/extractCases';
 
 function Home() {
   
-  const [cases, setCases] = useState(null);
+  const [data, setData] = useState(null);
+  const [loadMsg, setMsg] = useState(null);
 
-  useEffect(() => {
+  const getData = () => {
+    setMsg('Loading data...');
     fetchWikiData({
       action: 'parse',
       format: 'json',
@@ -15,9 +17,9 @@ function Home() {
       section: '15'
     }).then(data => {
       let parseTree = data.parse.parsetree['*'];
-      setCases(extractCases(parseTree, 'nsw'));
+      setData(extractCases(parseTree, 'nsw'));
     });
-  }, []);
+  };
 
   return (
     <>
@@ -27,16 +29,34 @@ function Home() {
 
       <hr/>
 
-      <pre>{cases || 'Loading data...'}</pre>
+      <select name="state" id="state-selector">
+        <option value="NSW">NSW</option>
+        <option value="VIC">Victoria</option>
+        <option value="ACT">ACT</option>
+        <option value="QLD">Queensland</option>
+        <option value="SA">South Australia</option>
+        <option value="TAS">Tasmania</option>
+        <option value="NT">Northern Territory</option>
+        <option value="WA">Western Australia</option>
+      </select>
+
+      <button onClick={getData}>Fetch</button>
+
+      <pre>{data || loadMsg || 'Select a state.'}</pre>
 
       <style jsx>{`
+        select, button {
+          display: inline-block;
+          height: 35px;
+        }
+        
         img {
           display: block;
           max-width: 500px;
         }
 
         pre {
-          display: inline-block;
+          display: block;
           font-family: 'JetBrains Mono', monospace;
           font-size: 14px;
           line-height: 21px;
