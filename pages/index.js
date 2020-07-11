@@ -12,9 +12,10 @@ function Home() {
   // }, []);
 
   fetchWikiData({
-    format: 'json',
     action: 'parse',
+    format: 'json',
     page: 'COVID-19_pandemic_in_Australia',
+    prop: 'wikitext',
     section: '15'
   }).then(console.log);
 
