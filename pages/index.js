@@ -45,37 +45,8 @@ function Home() {
       <pre>{data || loadMsg || 'Select a state.'}</pre>
 
       <style jsx>{`
-        hr {
-          margin: 26px 0;
-        }
-        
-        select, button {
-          display: inline-block;
-          height: 35px;
-        }
-
         button {
           margin-left: 8px;
-        }
-        
-        img {
-          display: block;
-          max-width: 500px;
-        }
-
-        pre {
-          display: block;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 14px;
-          line-height: 21px;
-          background: #f7f7f7;
-          border: 1px solid #dfdfdf;
-          border-radius: 5px;
-          padding: 6px 10px;
-          overflow-x: auto;
-          white-space: pre-wrap;
-          word-wrap: break-word;
-          max-width: 100%;
         }
       `}</style>
     </>
