@@ -1,3 +1,19 @@
+:root {
+  // Dark theme
+  --font-color-light: #dddddd;
+  --font-color-light-bright: #e7e6e4;
+  --dark-background: #141616;
+  --dark-foreground: #1D1F20;
+  --dark-border: #393E40;
+
+  /* Light theme
+  --font-color-dark: #dddddd;
+  --font-color-darkest: #e7e6e4;
+  --light-background: #141616;
+  --light-foreground: #1D1F20;
+  --light-border: #393E40; */
+}
+
 * {
   font-family: sans-serif;
   box-sizing: border-box;
@@ -5,12 +21,12 @@
 
 html {
   padding: 10px 4.5vw;
-  background: #141616;
-  color: #e7e6e4;
+  background: var(--dark-background);
+  color: var(--font-color-light-bright);
 }
 
 p {
-  color: #dddddd;
+  color: var(--font-color-light);
 }
 
 pre {
@@ -25,9 +41,9 @@ pre {
 }
 
 pre, select, button {
-  background: #1D1F20;
-  border: 1px solid #393E40;
-  color: #dddddd;
+  background: var(--dark-foreground);
+  border: 1px solid var(--dark-border);
+  color: var(--font-color-light);
   font-size: 14px;
   border-radius: 5px;
 }
