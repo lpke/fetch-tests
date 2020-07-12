@@ -55,6 +55,7 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           display: flex;
           flex-direction: row;
           align-items: center;
+          justify-content: space-between;
           background: var(--shaded);
           border: 1px solid var(--shaded-border);
           border-radius: 5px;
@@ -82,6 +83,26 @@ function Dropdown({ title, items=[], multiSelect = false }) {
 
         .dd-header__title--faded {
           color: #717171;
+        }
+
+        .dd-list {
+          position: absolute;
+          list-style: none;
+          background: var(--shaded);
+          border: 1px solid var(--shaded-border);
+          border-radius: 5px;
+          padding: 4px 12px;
+        }
+
+        .dd-list__item {
+          
+        }
+
+        .dd-list__item button {
+          padding: 5px 0;
+          background: unset;
+          border: unset;
+          border-radius: unset;
         }
       `}</style>
     </>
