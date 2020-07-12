@@ -46,6 +46,7 @@ select, button {
 }
 
 button {
+  cursor: pointer;
   transition:
     box-shadow 0.2s ease-in-out,
     border-color 0.2s ease-in-out;
@@ -54,6 +55,9 @@ button {
     box-shadow:
       0px 0px 8px 0px rgba(0, 0, 0, 0.04),
       0px 0px 3px 0px rgba(0, 0, 0, 0.07);
+  }
+
+  &:active {
     border-color: #bfbfbf;
   }
 }

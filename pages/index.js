@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+import Dropdown from 'components/dropdown';
+
 import fetchWikiData from 'lib/wikiFetch';
 import extractCases from 'lib/extractCases';
 
 function Home() {
   
-  const [data, setData] = useState(null);
   const [loadMsg, setMsg] = useState(null);
+  const [data, setData] = useState(null);
 
   const getData = () => {
     setMsg('Loading data...');
@@ -29,16 +31,18 @@ function Home() {
 
       <hr/>
 
-      <select name="state" id="state-selector">
-        <option value="NSW">NSW</option>
+      <Dropdown
+        title="Select a State"
+      />
+
+      {/* <option value="NSW">NSW</option>
         <option value="VIC">Victoria</option>
         <option value="ACT">ACT</option>
         <option value="QLD">Queensland</option>
         <option value="SA">South Australia</option>
         <option value="TAS">Tasmania</option>
         <option value="NT">Northern Territory</option>
-        <option value="WA">Western Australia</option>
-      </select>
+        <option value="WA">Western Australia</option> */}
 
       <button onClick={getData}>Fetch</button>
 
