@@ -48,6 +48,10 @@ function Home() {
         button {
           margin-left: 8px;
         }
+
+        pre {
+          margin-top: 26px;
+        }
       `}</style>
     </>
   );

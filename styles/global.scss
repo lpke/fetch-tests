@@ -1,17 +1,8 @@
 :root {
-  // Dark theme
-  --font-color-light: #dddddd;
-  --font-color-light-bright: #e7e6e4;
-  --dark-background: #141616;
-  --dark-foreground: #1D1F20;
-  --dark-border: #393E40;
-
-  /* Light theme
-  --font-color-dark: #dddddd;
-  --font-color-darkest: #e7e6e4;
-  --light-background: #141616;
-  --light-foreground: #1D1F20;
-  --light-border: #393E40; */
+  --background: #ffffff;
+  --font-color: #1d1e20;
+  --shaded: #f7f7f7;
+  --shaded-border: #dbdbdb;
 }
 
 * {
@@ -21,19 +12,19 @@
 
 html {
   padding: 10px 4.5vw;
-  background: var(--dark-background);
-  color: var(--font-color-light-bright);
+  background: var(--background);
+  color: var(--font-color);
 }
 
 p {
-  color: var(--font-color-light);
+  color: var(--font-color);
 }
 
 pre {
   display: block;
   font-family: 'JetBrains Mono', monospace;
   line-height: 21px;
-  padding: 6px 10px;
+  padding: 8px 16px;
   overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -41,9 +32,9 @@ pre {
 }
 
 pre, select, button {
-  background: var(--dark-foreground);
-  border: 1px solid var(--dark-border);
-  color: var(--font-color-light);
+  background: var(--shaded);
+  border: 1px solid var(--shaded-border);
+  color: var(--font-color);
   font-size: 14px;
   border-radius: 5px;
 }
@@ -51,9 +42,10 @@ pre, select, button {
 select, button {
   display: inline-block;
   height: 35px;
-  padding: 2px 10px;
+  padding: 4px 12px;
 }
 
 hr {
-  margin: 26px 0;
+  margin: 32px 0;
+  border: 1px solid rgb(235, 235, 235);
 }
