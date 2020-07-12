@@ -4,6 +4,49 @@ import Dropdown from 'components/dropdown';
 import fetchWikiData from 'lib/wikiFetch';
 import extractCases from 'lib/extractCases';
 
+const ausStates = [
+  {
+    id: 1,
+    value: 'NSW',
+    name: 'NSW'
+  },
+  {
+    id: 2,
+    value: 'VIC',
+    name: 'Victoria'
+  },
+  {
+    id: 3,
+    value: 'ACT',
+    name: 'ACT'
+  },
+  {
+    id: 4,
+    value: 'QLD',
+    name: 'Queensland'
+  },
+  {
+    id: 5,
+    value: 'SA',
+    name: 'South Australia'
+  },
+  {
+    id: 6,
+    value: 'TAS',
+    name: 'Tasmania'
+  },
+  {
+    id: 7,
+    value: 'NT',
+    name: 'Northern Terrirory'
+  },
+  {
+    id: 8,
+    value: 'WA',
+    name: 'Western Australia'
+  },
+];
+
 function Home() {
   
   const [loadMsg, setMsg] = useState(null);
@@ -33,16 +76,8 @@ function Home() {
 
       <Dropdown
         title="Select a State"
+        items={ausStates}
       />
-
-      {/* <option value="NSW">NSW</option>
-        <option value="VIC">Victoria</option>
-        <option value="ACT">ACT</option>
-        <option value="QLD">Queensland</option>
-        <option value="SA">South Australia</option>
-        <option value="TAS">Tasmania</option>
-        <option value="NT">Northern Territory</option>
-        <option value="WA">Western Australia</option> */}
 
       <button onClick={getData}>Fetch</button>
 

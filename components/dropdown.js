@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function Dropdown({ title, items, multiSelect = false }) {
+function Dropdown({ title, items=[], multiSelect = false }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   
@@ -29,8 +29,14 @@ function Dropdown({ title, items, multiSelect = false }) {
         </div>
 
         {open && (
-          <ul className="">
-            <li>Hello</li>
+          <ul className="dd-list">
+            {items.map(item => (
+              <li className="dd-list__item" key={item.id}>
+                <button type="button" onClick={() => handleOnClick(item)}>
+                  <span>{item.name}</span>
+                </button>
+              </li>
+            ))}
           </ul>
         )}
 
