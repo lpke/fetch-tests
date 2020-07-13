@@ -24,7 +24,13 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           </div>
 
           <div className="dd-header__action">
-            <p>{open ? 'v' : '>'}</p>
+            {open ? (
+              // icon-chevron-down
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 mr-4 icon-cheveron-down"><path className="secondary" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
+            ) : (
+              // icon-chevron-selection
+              <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 24 24" className="w-8 mr-4 icon-cheveron-selection"><path className="secondary" fill-rule="evenodd" d="M8.7 9.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 1 1-1.4 1.4L12 6.42l-3.3 3.3zm6.6 4.6a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
+            )}
           </div>
         </div>
 
@@ -64,25 +70,25 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           transition:
             box-shadow 0.2s ease-in-out,
             border-color 0.2s ease-in-out;
-        }
 
-        .dd-header:hover {
-          box-shadow:
-            0px 0px 8px 0px rgba(0, 0, 0, 0.04),
-            0px 0px 3px 0px rgba(0, 0, 0, 0.07);
-        }
+          :hover {
+            box-shadow:
+              0px 0px 8px 0px rgba(0, 0, 0, 0.04),
+              0px 0px 3px 0px rgba(0, 0, 0, 0.07);
+          }
 
-        .dd-header p {
-          margin: 0;
-          user-select: none;
-        }
+          p {
+            margin: 0;
+            user-select: none;
+          }
 
-        .dd-header__title {
-          margin-right: 10px;
-        }
+          &__title {
+            margin-right: 10px;
 
-        .dd-header__title--faded {
-          color: #717171;
+            &--faded {
+              color: #717171;
+            }
+          }
         }
 
         .dd-list {
@@ -92,17 +98,17 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           border: 1px solid var(--shaded-border);
           border-radius: 5px;
           padding: 4px 12px;
-        }
 
-        .dd-list__item {
-          
-        }
+          &__item {
+            //...
 
-        .dd-list__item button {
-          padding: 5px 0;
-          background: unset;
-          border: unset;
-          border-radius: unset;
+            button {
+              padding: 5px 0;
+              background: unset;
+              border: unset;
+              border-radius: unset;
+            }
+          }
         }
       `}</style>
     </>
