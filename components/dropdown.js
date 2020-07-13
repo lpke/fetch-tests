@@ -97,16 +97,24 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           background: var(--shaded);
           border: 1px solid var(--shaded-border);
           border-radius: 5px;
-          padding: 4px 12px;
+          padding: 4px 0;
 
           &__item {
-            //...
+            padding: 0 12px;
+
+            :hover {
+              background: #fff;
+            }
 
             button {
               padding: 5px 0;
               background: unset;
               border: unset;
               border-radius: unset;
+
+              :hover {
+                box-shadow: unset;
+              }
             }
           }
         }
