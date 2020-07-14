@@ -6,7 +6,25 @@ function Dropdown({ title, items=[], multiSelect = false }) {
   
   const toggle = (bool) => setOpen(bool);
 
-  function handleOnClick(item) {}
+  function handleOnClick(item) {
+    // If selection isn't already registered
+    if (!selection.some(saved => saved.id === item.id)) {
+      if (!multiSelect) {
+        setSelection([item]);
+        setOpen(false);
+      }
+      else if (multiSelect) {
+        setSelection([...selection, item]);
+      }
+    }
+    // If selection is registered
+    else {
+      // If multiselect is enabled, remove new selection from select group
+      if (multiSelect) {
+        setSelection(selection.filter(saved => saved.id !== item.id));
+      }
+    }
+  }
  
   return (
     <>
@@ -26,10 +44,10 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           <div className="dd-header__action">
             {open ? (
               // icon-chevron-down
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 mr-4 icon-cheveron-down"><path className="secondary" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon__chev-down"><path className="secondary" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
             ) : (
               // icon-chevron-selection
-              <svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 24 24" className="w-8 mr-4 icon-cheveron-selection"><path className="secondary" fill-rule="evenodd" d="M8.7 9.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 1 1-1.4 1.4L12 6.42l-3.3 3.3zm6.6 4.6a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon__chev-select"><path className="secondary" fill-rule="evenodd" d="M8.7 9.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 1 1-1.4 1.4L12 6.42l-3.3 3.3zm6.6 4.6a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
             )}
           </div>
         </div>
@@ -54,6 +72,7 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           font-size: 14px;
         }
 
+        //#region -> header (selection box)
         .dd-header {
           width: 100%;
           height: 100%;
@@ -89,8 +108,21 @@ function Dropdown({ title, items=[], multiSelect = false }) {
               color: #717171;
             }
           }
-        }
 
+          &__action {
+            display: flex;
+            align-items: center;
+
+            .icon {
+              max-height: 16px;
+              //margin-right: -5px;
+              fill: #a1a1a1;
+            }
+          }
+        }
+        //#endregion <-
+
+        //#region -> list (pop up dropdown part)
         .dd-list {
           position: absolute;
           list-style: none;
@@ -104,6 +136,7 @@ function Dropdown({ title, items=[], multiSelect = false }) {
 
             :hover {
               background: #fff;
+              cursor: pointer;
             }
 
             button {
@@ -118,6 +151,7 @@ function Dropdown({ title, items=[], multiSelect = false }) {
             }
           }
         }
+        //#endregion <-
       `}</style>
     </>
   );
