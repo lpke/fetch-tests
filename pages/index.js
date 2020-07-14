@@ -75,7 +75,7 @@ function Home() {
       <hr/>
 
       <Dropdown
-        title="Select a State"
+        placeholder="select state"
         items={ausStates}
       />
 

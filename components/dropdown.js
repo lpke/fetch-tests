@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function Dropdown({ title, items=[], multiSelect = false }) {
+function Dropdown({ placeholder = 'Select', items = [], multiSelect = false }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   
@@ -23,8 +23,19 @@ function Dropdown({ title, items=[], multiSelect = false }) {
       if (multiSelect) {
         setSelection(selection.filter(saved => saved.id !== item.id));
       }
+      else {
+        setOpen(false);
+      }
     }
   }
+
+  function headerTitle() {
+    if (selection.length === 1) return selection[0].name;
+    else if (selection.length > 1) return 'Multiple';
+    else return placeholder;
+  }
+
+  const isInSelection = item => selection.find(saved => saved.id === item.id);
  
   return (
     <>
@@ -38,16 +49,16 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           onClick={() => toggle(!open)}
         >
           <div className="dd-header__title">
-            <p className="dd-header__title--faded">{title}</p>
+            <p className="dd-header__title--faded">{headerTitle()}</p>
           </div>
 
           <div className="dd-header__action">
             {open ? (
               // icon-chevron-down
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon__chev-down"><path className="secondary" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon__chev-down"><path className="secondary" fillRule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
             ) : (
               // icon-chevron-selection
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon__chev-select"><path className="secondary" fill-rule="evenodd" d="M8.7 9.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 1 1-1.4 1.4L12 6.42l-3.3 3.3zm6.6 4.6a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon__chev-select"><path className="secondary" fillRule="evenodd" d="M8.7 9.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 1 1-1.4 1.4L12 6.42l-3.3 3.3zm6.6 4.6a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" /></svg>
             )}
           </div>
         </div>
@@ -55,7 +66,10 @@ function Dropdown({ title, items=[], multiSelect = false }) {
         {open && (
           <ul className="dd-list">
             {items.map(item => (
-              <li className="dd-list__item" key={item.id}>
+              <li
+                className={'dd-list__item' + (isInSelection(item) ? ' dd-list__item--selected' : '')}
+                key={item.id}
+              >
                 <button type="button" onClick={() => handleOnClick(item)}>
                   <span>{item.name}</span>
                 </button>
@@ -115,7 +129,6 @@ function Dropdown({ title, items=[], multiSelect = false }) {
 
             .icon {
               max-height: 16px;
-              //margin-right: -5px;
               fill: #a1a1a1;
             }
           }
@@ -134,6 +147,12 @@ function Dropdown({ title, items=[], multiSelect = false }) {
 
           &__item {
             height: 32px;
+
+            &--selected {
+              button {
+                font-weight: bold;
+              }
+            }
             
             :hover {
               background: #fff;
