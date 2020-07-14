@@ -130,17 +130,20 @@ function Dropdown({ title, items=[], multiSelect = false }) {
           border: 1px solid var(--shaded-border);
           border-radius: 5px;
           padding: 4px 0;
+          margin: 6px 0 0 0;
 
           &__item {
-            padding: 0 12px;
-
+            height: 32px;
+            
             :hover {
               background: #fff;
-              cursor: pointer;
             }
 
             button {
-              padding: 5px 0;
+              text-align: left;
+              width: 100%;
+              height: 100%;
+              padding: 5px 12px;
               background: unset;
               border: unset;
               border-radius: unset;
